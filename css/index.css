@@ -21,7 +21,39 @@ body {
     top:0px;
     z-index: 0;
 }
+/* warning */
 
+.warning {
+    display: none;
+    z-index: 4;
+    margin: 0 auto;
+    margin-top: 4vh;
+    position: absolute;
+    top: 0px;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    background-color: rgb(255, 255, 34);
+    border-radius: 15px;
+    box-shadow: 3px 5px 4px 5px #1e5799;
+}
+.warning > p {
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+.overlay {
+    all: unset;
+    position:absolute; top:0px; right:0px; 
+    padding-right: 1.3vw;
+    cursor: pointer;
+}
+
+.overlay > p:hover {
+    transform: scale(1.4, 1.4);
+}
+.overlay > p:active {
+    transition: 1s;
+    transform: translateY(4px);
+}
 /* rewards after opening chest */
 .reward {
     margin: auto;

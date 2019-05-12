@@ -15,13 +15,19 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+$(".overlay").click(function() {
+    $(".warning").fadeOut();
+});
+
 // resize function
 function resize() {
     scale = ($(window).width() * .8)/1024;
-    console.log(scale);
+    if ($(window).width() < 1280 || $(window).hight() < 890) {
+        $(".warning").fadeIn();
+    }
     if (scale <= 1 && scale >= 0.5) {
         $(".shapeshifter, .shapeshifter2").css("transform", "scale("+ scale + ","+ scale + ")");
-        $(".gemstack").css("transform", "scale(.4, .4)");
+        $(".gemstack").css("transform", "scale(.35, .35)");
         $(".coinstack").css("transform", "scale(.4, .4)");
     } else if (scale <= 0.5) {
         $(".shapeshifter, .shapeshifter2").css("transform", "scale("+ .5 + ","+ .5 + ")");
@@ -29,7 +35,7 @@ function resize() {
         $(".coinstack").css("transform", "scale(.28, .28)");
     } else {
         $(".shapeshifter, .shapeshifter2").css("transform", "scale("+ 1 + ","+ 1 + ")");
-        $(".gemstack").css("transform", "scale(.4, .4)");
+        $(".gemstack").css("transform", "scale(.35, .35)");
         $(".coinstack").css("transform", "scale(.4, .4)");
     }
 }
@@ -39,6 +45,8 @@ function animation() {
     $(".shapeshifter").hide();
     $(".shapeshifter2").show();
     $(".shapeshifter2").css("animation-play-state", "running");
+
+    // timing the moving chest animation part 2
     setTimeout(function(){
         if ((!ongoing) && ongoing2){
             return 0;
@@ -70,6 +78,7 @@ function animation() {
         }
         start_coin = end_coin
 
+        // added levels to multiply gem count
         var add_gem;
         var end_gem;
         if (int2 <= 30) {
@@ -94,6 +103,7 @@ function animation() {
         }
         start_gem = end_gem;
 
+        // wins game at 1 billion coins and 5^8 gems
         if (start_coin > 10**9 && start_gem > 5**8) {
             $(".gemer").text("You win");
             $(".coiner").text("You win");
@@ -119,6 +129,7 @@ function animation() {
         $(".gemer2").html(Number(add_gem));
         $(".coiner2").html(Number(add_coin));
 
+        // changes it so it is the starting position and resets time interval
         $(".reward").click(function(){
             level++;
             $(".shapeshifter2").hide();
