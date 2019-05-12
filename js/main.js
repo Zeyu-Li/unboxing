@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // inits
 var level = 1;
@@ -7,6 +7,8 @@ var start_gem = 0;
 var ongoing = false;
 var ongoing2 = false;
 var scale;
+var int1;
+var int2;
 var start = new Date();
 start = start.getTime();
 
@@ -15,45 +17,45 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-$(".overlay").click(function() {
-    $(".warning").fadeOut();
+$('.overlay').click(function() {
+    $('.warning').fadeOut();
 });
 
 // resize function
 function resize() {
     scale = ($(window).width() * .8)/1024;
-    if ($(window).width() < 1280 || $(window).height() < 890) {
-        $(".warning").fadeIn();
+    if ($(window).width() < 1280 || $(window).height() < 850) {
+        $('.warning').fadeIn();
     }
     if (scale <= 1 && scale >= 0.5) {
-        $(".shapeshifter, .shapeshifter2").css("transform", "scale("+ scale + ","+ scale + ")");
-        $(".gemstack").css("transform", "scale(.35, .35)");
-        $(".coinstack").css("transform", "scale(.4, .4)");
+        $('.shapeshifter, .shapeshifter2').css('transform', 'scale('+ scale + ','+ scale + ')');
+        $('.gemstack').css('transform', 'scale(.35, .35)');
+        $('.coinstack').css('transform', 'scale(.4, .4)');
     } else if (scale <= 0.5) {
-        $(".shapeshifter, .shapeshifter2").css("transform", "scale("+ .5 + ","+ .5 + ")");
-        $(".gemstack").css("transform", "scale(.28, .28)");
-        $(".coinstack").css("transform", "scale(.28, .28)");
+        $('.shapeshifter, .shapeshifter2').css('transform', 'scale('+ .5 + ','+ .5 + ')');
+        $('.gemstack').css('transform', 'scale(.28, .28)');
+        $('.coinstack').css('transform', 'scale(.28, .28)');
     } else {
-        $(".shapeshifter, .shapeshifter2").css("transform", "scale("+ 1 + ","+ 1 + ")");
-        $(".gemstack").css("transform", "scale(.35, .35)");
-        $(".coinstack").css("transform", "scale(.4, .4)");
+        $('.shapeshifter, .shapeshifter2').css('transform', 'scale('+ 1 + ','+ 1 + ')');
+        $('.gemstack').css('transform', 'scale(.35, .35)');
+        $('.coinstack').css('transform', 'scale(.4, .4)');
     }
 }
 
 // animating gems, counts, fades, and more
 function animation() {
-    $(".shapeshifter").hide();
-    $(".shapeshifter2").show();
-    $(".shapeshifter2").css("animation-play-state", "running");
+    $('.shapeshifter').hide();
+    $('.shapeshifter2').show();
+    $('.shapeshifter2').css('animation-play-state', 'running');
 
     // timing the moving chest animation part 2
     setTimeout(function(){
         if ((!ongoing) && ongoing2){
             return 0;
         }
-        $(".shapeshifter2").css("animation-play-state", "paused");
-        const int1 = getRandomInt(100);
-        const int2 = getRandomInt(100);
+        $('.shapeshifter2').css('animation-play-state', 'paused');
+        int1 = getRandomInt(100);
+        int2 = getRandomInt(100);
         var add_coin;
         var end_coin;
         if (int1 <= 30) {
@@ -66,17 +68,17 @@ function animation() {
             add_coin = 4000*level;
             level = level+3;
         } else {
-            add_coin = "x2";
+            add_coin = 'x2';
             var coin_text = true;
             level = level+10;
         }
 
-        if (add_coin=="x2"){
+        if (add_coin=='x2'){
             end_coin = start_coin * 2;
         } else {
             end_coin = start_coin + add_coin;
         }
-        start_coin = end_coin
+        start_coin = end_coin;
 
         // added levels to multiply gem count
         var add_gem;
@@ -91,12 +93,12 @@ function animation() {
             add_gem = 400*level;
             level = level+3;
         } else {
-            add_gem = "x2";
+            add_gem = 'x2';
             level = level+10;
             var gem_text = true;
         }
 
-        if (add_gem=="x2"){
+        if (add_gem=='x2'){
             end_gem = start_gem * 2;
         } else {
             end_gem = start_gem + add_gem;
@@ -104,15 +106,15 @@ function animation() {
         start_gem = end_gem;
 
         // wins game at 1 billion coins and 5^8 gems
-        if (start_coin > 10**9 && start_gem > 5**8) {
-            $(".gemer").text("You win");
-            $(".coiner").text("You win");
+        if (start_coin > Math.pow(10,9) && start_gem > Math.pow(5, 8)) {
+            $('.gemer').text('You win');
+            $('.coiner').text('You win');
             return 0;
         }
 
-        $(".reward .right, .reward .left").css("display", "grid");
-        $(".reward").css("display", "grid");
-        $(".gemstack, .coinstack").fadeIn();
+        $('.reward .right, .reward .left').css('display', 'grid');
+        $('.reward').css('display', 'grid');
+        $('.gemstack, .coinstack').fadeIn();
 
         if (gem_text) {
             em_text = false;
@@ -123,21 +125,21 @@ function animation() {
             end_coin = start_coin/2;
         }
 
-        $(".gemer").html(Number(end_gem));
-        $(".coiner").html(Number(end_coin));
+        $('.gemer').html(Number(end_gem));
+        $('.coiner').html(Number(end_coin));
         
-        $(".gemer2").html(Number(add_gem));
-        $(".coiner2").html(Number(add_coin));
+        $('.gemer2').html(Number(add_gem));
+        $('.coiner2').html(Number(add_coin));
 
         // changes it so it is the starting position and resets time interval
-        $(".reward").click(function(){
+        $('.reward').click(function(){
             level++;
-            $(".shapeshifter2").hide();
-            $(".reward").hide();
-            $(".shapeshifter").css("background-image","url(../images/jump_new.svg)");
+            $('.shapeshifter2').hide();
+            $('.reward').hide();
+            $('.shapeshifter').css('background-image','url(images/jump_new.svg)');
             var start = new Date();
             start = start.getTime()+200;
-            $(".shapeshifter").show();
+            $('.shapeshifter').show();
 
         });
 
@@ -152,7 +154,7 @@ $(window).resize(function() {
 });
 
 // after clicking chest
-$(".shapeshifter").click(function(){
+$('.shapeshifter').click(function(){
 
     if (ongoing == true){
         return 0;
