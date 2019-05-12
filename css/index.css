@@ -1,0 +1,186 @@
+body {
+    overflow: hidden;
+    margin: 0px;
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 37%, #7db9e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 37%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1e5799 0%,#2989d8 37%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    width: 100vw;
+    height: 100vh;
+    font-family: PT Sans Narrow, sans-serif;
+}
+.top {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    width: 100vw;
+    height: 100vh;
+    grid-template-areas:
+    " . . counter ";
+    position: fixed;
+    top:0px;
+    z-index: 0;
+}
+
+/* rewards after opening chest */
+.reward {
+    margin: auto;
+    display: none;
+    grid-template-columns: 36% 18% 15% 31%;
+    grid-template-rows: 40% 20% 40%;
+    width: 100vw;
+    height: 100vh;
+    grid-template-areas:
+    " . . . . "
+    " . left right . ";
+    position: fixed;
+    top:0px;
+    z-index: 1;
+}
+@media only screen and (min-width: 768px){
+    .reward {
+        grid-template-columns: 39% 15% 15% 31%;
+    }
+}
+@media only screen and (min-width: 1670px){
+    .reward {
+        grid-template-columns: 41% 11.5% 15% 4%;
+    }
+}
+.reward .right, .reward .left {
+    display: none;
+}
+.coinstack {
+    transform-origin: 0 0;
+    grid-area: top1;
+    min-width: 150px;
+    text-align: left;
+    display: none;
+
+}
+.gemstack {
+    transform-origin: 0 0;
+    grid-area: top2;
+    min-width: 150px;
+    margin-top: -2vw;
+    text-align: right;
+    display: none;
+}
+.left {
+    grid-area: left;
+    grid-template-rows: 75% 25%;
+    grid-template-areas:
+    " top1 "
+    " bottom1 ";
+}
+.right {
+    grid-area: right;
+    grid-template-rows: 75% 25%;
+    grid-template-areas:
+    " top2 "
+    " bottom2 ";
+}
+.coiner2 {
+    grid-area: bottom1;
+    text-align: left;
+    padding-right: 7vw;
+    margin-top: -30px;
+    margin-bottom: -10vw;
+    font-size: 1.5em;
+}
+.gemer2 {
+    grid-area: bottom2;
+    text-align: left;
+    margin-top: -30px;
+    padding-right: 9vw;
+    margin-bottom: -10vw;
+    font-size: 1.5em;
+}
+.counter {
+    grid-area: counter;
+    background-image: url(../images/counter.svg);
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-rows: 6.7vw 9vw;
+    grid-template-areas:
+    " . "
+    " coin "
+    " gem ";
+}
+.layers {
+
+    margin: auto;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-areas:
+    " . . . "
+    ".     chest     ."
+    ".    .    . ";
+
+}
+.coin p {
+    text-align: right;
+    grid-area: coin;
+    padding-right: 5vw;
+    margin-top: 3vw;
+    font-size: 3vw;
+    margin-bottom: 0px;
+}
+.gem p {
+    text-align: right;
+    grid-area: gem;
+    margin-top: 1.5vw;
+    padding-right: 5vw;
+    font-size: 3vw;
+}
+
+/* ------------- shapeshifter stuff ------------- */
+@keyframes play72 {
+    0% {background-position: 0px 0px;
+    }
+    100% {background-position: -73728px 0px;
+    }
+}
+.shapeshifter {
+    grid-area: chest;
+    margin-top:15vh;
+    align-self: center;
+    justify-self: center;
+    animation-duration: 1200ms;
+    animation-timing-function: steps(72);
+    animation-iteration-count: infinite;
+    width: 1024px;
+    height: 768px;
+    background-repeat: no-repeat;
+    background-image: url(../images/jump_new.svg);
+}
+.shapeshifter.play {
+    animation-name: play72;
+}
+@keyframes play114 {
+0% {
+    background-position: 0px 0px;
+}
+100% {
+    background-position: -116736px 0px;
+}
+}
+.shapeshifter2 {
+    display: none;
+    animation-play-state: paused;
+    grid-area: chest;
+    margin-top: 6vh;
+    align-self: center;
+    justify-self: center;
+    animation-duration: 3800ms;
+    animation-timing-function: steps(114);
+    width: 1024px;
+    height: 768px;
+    background-repeat: no-repeat;
+    background-image: url(../images/open.svg);
+    column-fill: auto;
+}
+.shapeshifter2.play2 {
+    animation-name: play114;
+}

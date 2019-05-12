@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<!-- Unboxing Game Using jQuery -->
+<html>
+<head>
+    
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta name="description" content="Unboxing Game">
+    <meta name="keywords" content="andrew li, code, unboxing, game">
+    <meta name="author" content="Andrew Li">
+    
+    <link rel="icon" href="images/icon.ico" type="image/ico">
+    <title>Loot Crates</title>
+    
+    <!--    css libraries   -->
+    
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" href="css/odometer-theme-default.css" type="text/css">
+
+    <!--    fonts   -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
+    <!--    js libraries    -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>if (!window.jQuery) document.write('<script src="jslib/jquery-3.3.1.min.js"><\/script>');</script>
+    <script src="jslib/odometer.min.js"></script>
+</head>
+    
+<body>
+
+    <!-- main body -->
+    
+    <!-- top counter w/ odometer (https://github.hubspot.com/odometer/docs/welcome/) -->
+    <div class="top">
+        <div class="counter">
+            <div class="coin"><p class="odometer coiner">0</p></div>
+            <div class="gem"><p class="odometer gemer">0</p></div>
+        </div>
+    </div>
+
+    <!-- rewards after opening the chests -->
+    <div class="reward">
+        <div class="left"><img src="images/stackocoin.svg" class="coinstack"><p class="odometer coiner2">0</p></div>
+        <div class="right"><img src="images/gemstack.svg" class="gemstack"><p class="odometer gemer2">0</p></div>
+    </div>
+
+    <!-- main layer with chests (made using https://shapeshifter.design/) -->
+    <div class="layers">
+        <div class="shapeshifter play"></div>
+        <div class="shapeshifter2 play2"></div>
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
