@@ -5,7 +5,7 @@ This game is inspired by loot boxes, but this one is completely free :)
 
 Please enjoy
 
-#3 Environment
+## Environment
 Used:
  * [jQuery](https://jquery.com/)
  * [odometer](https://github.hubspot.com/odometer/docs/welcome/)
