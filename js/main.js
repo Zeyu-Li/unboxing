@@ -22,7 +22,7 @@ $(".overlay").click(function() {
 // resize function
 function resize() {
     scale = ($(window).width() * .8)/1024;
-    if ($(window).width() < 1280 || $(window).hight() < 890) {
+    if ($(window).width() < 1280 || $(window).height() < 890) {
         $(".warning").fadeIn();
     }
     if (scale <= 1 && scale >= 0.5) {
